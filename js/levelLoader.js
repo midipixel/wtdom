@@ -14,9 +14,7 @@ var levelLoader = {
         //Bind loading functionality to form
         $('#levelLoader').on('submit', function(e){
                 selected = $('#levelLoader option:selected').val();
-                //levelLoader.load('levels/' + selected);
-                levelLoader.load(selected);
-                //console.log(levelToLoad);
+                levelLoader.load('levels/' + selected);
                 e.preventDefault();
         });
     },
