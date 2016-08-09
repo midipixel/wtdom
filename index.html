@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>WT JS</title>
+    <link rel="stylesheet" href="css/wt.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <p class="warning">Please play this prototype in landscape orientation! :D</p>
+
+    <section class="aux">
+        <p id="msg">MSG: <span></span></p>
+
+        <form id="levelLoader">
+            <select>
+                <!-- Populated by Javascript -->
+            </select>
+
+            <button type="submit">Load</button>
+        </form>
+
+        <button id="fs">Fullscreen</button>
+    </section>
+
+    <div class="container">
+        <section class="hud">
+            <div class="character"></div>
+            <p class="life" id="life"><span>3</span></p>
+        </section>
+
+        <div class="scene" id="scene"></div>
+    </div>
+
+    <div class="controls" id="controls">
+        <span class="up">&#9650;</span>
+        <div class="sub">
+            <span class="left">&#9668;</span>
+            <span class="right">&#9658;</span>
+        </div>
+        <span class="down">&#9660;</span>
+    </div>
+
+    <div class="modal" id="modal">
+        <article>
+            <p>Msg</p>
+            <button>ok</button>
+        </article>
+    </div>
+
+
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="js/TweenMax.min.js"></script>
+    <script type="text/javascript" src="js/screenfull.js"></script>
+    <script type="text/javascript" src="js/howler.min.js"></script>
+
+    <script type="text/javascript" src="js/audio.js"></script>
+    <script type="text/javascript" src="js/levelLoader.js"></script>
+    <script type="text/javascript" src="js/wt.js"></script>
+</body>
+
+</html>

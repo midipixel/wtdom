@@ -1,0 +1,384 @@
+/* =Global Vars
+-----------------------------------------------------------------------------*/
+
+@bright: #e8e8e8;
+@midBright: #999999;
+@midDark: #666666;
+@dark: #1f1f1f;
+@tileSize: 16px;
+
+/* =Typography
+-----------------------------------------------------------------------------*/
+
+@font-face {
+  font-family: 'Alterebro';
+  src: url('../fonts/alterebro.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('../fonts/alterebro.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+/* =General
+-----------------------------------------------------------------------------*/
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: @dark;
+    height: 100vh;
+}
+
+.tile{
+    height: @tileSize;
+    width: @tileSize;
+}
+
+*{
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    border-radius: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container{
+    transform: scale(4);
+    transform-origin: top left;
+    display: inline-block;
+}
+
+.col{
+    float: left;
+}
+
+.warning{
+    color: @bright;
+    font-size: 3em;
+    display: none;
+    font-family: Alterebro, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 2em;
+}
+
+/* =Gameplay
+-----------------------------------------------------------------------------*/
+
+.scene{
+    display: inline-block;
+    border: 1px solid @midDark;
+    position: relative;
+}
+
+#stage{
+    border-collapse: collapse;
+}
+
+#stage td{
+    .tile;
+    margin: 0;
+    padding: 0;
+    background: @dark url(../img/tileset.png) 0 0;
+}
+
+#tim{
+    .tile;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../img/tim.png);
+    z-index: 10;
+    margin-top: -5px; /* offset so the character steps in the middle of the tile */
+}
+
+#stage td.gem5::after{
+    content:' ';
+    .tile;
+    display: block;
+    text-align: center;
+    animation: gem5 0.5s steps(4) infinite;
+    background: url(../img/gems.png) no-repeat 0 -16px;
+    position: relative;
+    top: -3px;
+}
+
+@keyframes gem5{
+    0%{
+        background-position: 0 -16px;
+    }
+
+    100% {
+        background-position: -64px -16px;
+    }
+
+}
+
+#stage td.gem3::after{
+    content:' ';
+    .tile;
+    display: block;
+    animation: gem3 0.5s steps(4) infinite;
+    background: url(../img/gems.png) no-repeat 0 -16px;
+    position: relative;
+    top: -3px;
+}
+
+@keyframes gem3{
+    0%{
+        background-position: 0 0px;
+    }
+
+    100% {
+        background-position: -64px 0px;
+    }
+
+}
+
+#stage td.exit{
+    background: blue;
+}
+
+#stage td.hole{
+    /*background: @dark;*/
+    background: url(../img/tileset.png) no-repeat -48px -16px;
+}
+
+/* =UI
+-----------------------------------------------------------------------------*/
+
+.hud{
+    width: @tileSize * 2;
+    color: @bright;
+    float: left;
+}
+
+.hud .character{
+    width: 15px;
+    height: 17px;
+    margin: 0 auto;
+    background: url(../img/hud_tim.png) no-repeat -15px 0;
+    margin-bottom: 3px;
+}
+
+.life{
+    font-family: 'Alterebro', sans-serif;
+    display: flex;
+    width: 24px;
+    height: 24px;
+    background: url(../img/hud_gems.png) no-repeat 0 0;
+    margin: 0 auto;
+}
+
+.life span{
+    align-self: center;
+    width: 100%;
+    font-size: 0.9em;
+    text-align: center;
+    line-height: 1em;
+    padding-bottom: 2px; /* because the font's line height sucks */
+}
+
+.aux{
+    display: flex;
+    margin-bottom: 1em;
+    align-items: center;
+    background: @midBright;
+    padding: 0.5em 0;
+}
+
+.aux > * {
+    flex: 1;
+}
+
+#msg{
+    color: @dark;
+    margin: 0;
+    display: none;
+}
+
+#msg span{
+    font-weight: bold;
+    background: rgba(255,255,255,0.8);
+    padding: 0.2em;
+    display: inline-block;
+    transition: all 0.5s ease-in;
+}
+
+#msg .gameOver{
+    color: red;
+}
+
+#msg .victory{
+    color: green;
+}
+
+.modal{
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    display: none;
+}
+
+.modal article{
+    background: @bright;
+    width: 50%;
+    margin: 10% auto;
+    padding: 1em;
+    border: 4px solid @midBright;
+}
+
+.modal p, .modal button{
+    font: 2em Alterebro, sans-serif;
+    text-transform: uppercase;
+}
+
+/* =Controls
+-----------------------------------------------------------------------------*/
+@ctl: 11em;
+@ctl_pad: @ctl / 3;
+
+.controls{
+    font-family: Arial, Helvetica, Verdana, sans-serif;
+    width: @ctl;
+    position: absolute;
+    right: 1em;
+    top: 4em;
+    text-align: center;
+    display: none;
+    line-height: 0;
+}
+
+.controls span{
+    display: inline-block;
+    background: @bright;
+    color: @dark;
+    width: @ctl_pad;
+    height: @ctl_pad;
+    line-height: @ctl_pad;
+    border-radius: 5%;
+    box-shadow: -1px 2px 0 1px @midDark;
+    cursor: pointer;
+}
+
+.controls span:active{
+    background: @midBright;
+}
+
+.controls .sub{
+    clear: both;
+    height: @ctl_pad;
+    padding: 4px 0;
+}
+
+.controls .down{
+    clear: both;
+}
+
+.controls .left{
+    float: left;
+}
+
+.controls .right{
+    float: right;
+}
+
+
+/* =Movement
+-----------------------------------------------------------------------------*/
+
+@keyframes moveUp{
+    0%{
+        background-position: 0px -16px;
+    }
+
+    100% {
+        background-position: -32px -16px;
+    }
+
+}
+
+@keyframes moveLeft{
+    0%{
+        background-position: 0px -48px;
+    }
+
+    100% {
+        background-position: -32px -48px;
+    }
+
+}
+
+@keyframes moveDown{
+    0%{
+        background-position: 0px 0px;
+    }
+
+    100% {
+        background-position: -32px 0px;
+    }
+
+}
+
+@keyframes moveRight{
+    0%{
+        background-position: 0px -32px;
+    }
+
+    100% {
+        background-position: -32px -32px;
+    }
+
+}
+
+.up{
+    animation: moveUp 0.3s steps(2) forwards;
+}
+
+.down{
+    animation: moveDown 0.3s steps(2) forwards;
+}
+
+.left{
+    animation: moveLeft 0.3s steps(2) forwards;
+}
+
+.right{
+    animation: moveRight 0.3s steps(2) forwards;
+}
+
+/* =Media Queries
+-----------------------------------------------------------------------------*/
+/* Breakpoints */
+@portrait: 319px;
+@landscape: 479px;
+@desktop: 739px;
+
+@media only screen and (max-width: @landscape){
+    .container, .aux{
+        display: none;
+        border: 1px solid red;
+    }
+    .warning{
+        display: block;
+    }
+}
+
+@media only screen and (min-width: @landscape) and (max-width: @desktop){
+    .container{
+        transform: scale(3);
+    }
+
+    .controls{
+        display: block;
+    }
+}
