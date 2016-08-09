@@ -1,5 +1,5 @@
 # Warlock's Tower - DOM Prototype
-This prototype was developed as a proof of concept for the CSS Conf AR 2016 talk "(Game Dev for Web Designers: Play with the DOM like never before)[http://midipixel.com/palestras/domgamedev]".
+This prototype was developed as a proof of concept for the CSS Conf AR 2016 talk "[Game Dev for Web Designers: Play with the DOM like never before](http://midipixel.com/palestras/domgamedev)".
 It implements the basic mechanic of the PC Game "Warlock's Tower", by Midipixel, by using HTML, CSS and JS. No canvas, no WebGL. Just good ol' DOM.
 
 ##How to play
