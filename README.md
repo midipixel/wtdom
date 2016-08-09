@@ -1,10 +1,10 @@
 # Warlock's Tower - DOM Prototype
-This prototype was developed as a proof of concept for the CSS Conf AR 2016 talk "Game Dev for Web Designers: Play with the DOM" like never before.
+This prototype was developed as a proof of concept for the CSS Conf AR 2016 talk "(Game Dev for Web Designers: Play with the DOM like never before)[http://midipixel.com/palestras/domgamedev]".
 It implements the basic mechanic of the PC Game "Warlock's Tower", by Midipixel, by using HTML, CSS and JS. No canvas, no WebGL. Just good ol' DOM.
 
 ##How to play
 The game's mechanic is straightforward. Each step you take costs one life. Lose all lives, and you're dead! You must use the gems to restore your life and reach the exit.
-In this prototype, you must use the level loader at the top to play new levels. You will, however, need a local server for that. You can try the Conf's Prototype [here](http://midipixel.com/wtdom/)
+In this prototype, you must use the level loader at the top to play new levels. You will, however, need a local server for that. You can try the Conf's Prototype [here](http://midipixel.com/wtdom/).
 [Check out the official game](http://midipixel.com/warlockstower) for lots of levels!
 
 ##Creating new levels
